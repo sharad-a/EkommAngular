@@ -24,7 +24,7 @@ export class LoginComponent {
       password: this.password
     }
 
-    const res = await axios.post('localhost:5005/api/login', obj)
+    const res = await axios.post('http://localhost:5005/api/login', obj)
 
     console.log("res: ", res.data.data[0].role)
 
