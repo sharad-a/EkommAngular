@@ -1,0 +1,5 @@
+.register-container {
+    background-color: #f3f4f6; 
+    height: calc(100vh - 112px);
+    overflow-y: auto; 
+}

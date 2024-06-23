@@ -1,0 +1,7 @@
+.home-container {
+    height: calc(100vh - 112px);
+    overflow-y: auto; 
+}
+.bg-image{
+    background-image: url(../../assets/images/background-image.jpg)
+}
