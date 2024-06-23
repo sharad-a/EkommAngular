@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CartComponent } from './cart/cart.component';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 export const routes: Routes = [
     {
@@ -29,3 +31,10 @@ export const routes: Routes = [
         path: "cart", component: CartComponent, // canActivate: AuthGuard
     }
 ];
+
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+  export class AppRoutingModule { }

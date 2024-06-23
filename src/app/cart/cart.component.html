@@ -1,0 +1,14 @@
+<!-- src/app/cart/cart.component.html -->
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold mb-4">Your Cart</h2>
+    <div *ngFor="let item of cartItems" class="flex items-center justify-between mb-4 p-4 border rounded">
+        <div class="flex items-center">
+            <img [src]="item.product.prodImage" alt="{{item.product.prodName}}" class="w-16 h-16 object-cover mr-4">
+            <div>
+                <h3 class="text-lg font-semibold">{{item.product.prodName}}</h3>
+                <p class="text-gray-700">Quantity: {{item.quantity}}</p>
+            </div>
+        </div>
+        <p class="text-lg font-semibold">${{ getProductPrice(item) }}</p>
+    </div>
+</div>
