@@ -1,11 +1,10 @@
-// src/app/product-detail/product-detail.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
 import { AuthService } from '../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,7 +15,7 @@ import { AuthService } from '../services/auth.service';
   providers: [ProductService, CartService, AuthService]
 })
 export class ProductDetailComponent implements OnInit {
-  product: any = null;
+  product: any;
   quantity: number = 1;
 
   constructor(

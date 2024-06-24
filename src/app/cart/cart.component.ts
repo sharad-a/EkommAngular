@@ -1,4 +1,3 @@
-// src/app/cart/cart.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { CommonModule } from '@angular/common';
@@ -14,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class CartComponent implements OnInit {
   cartItems: any[] = [];
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService) { }
 
   async ngOnInit(): Promise<void> {
     try {

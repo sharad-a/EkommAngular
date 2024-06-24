@@ -29,9 +29,9 @@ export class LoginComponent {
     console.log("res: ", res.data.data[0].role)
 
     if (res.data.data[0].role == "0x88") {
-      this.router.navigate(['/home'])
+      this.router.navigate(['/products'])
     } else if (res.data.data[0].role == "0x01") {
-      this.router.navigate(['/home'])
+      this.router.navigate(['/products'])
     }
 
   }

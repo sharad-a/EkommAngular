@@ -1,4 +1,3 @@
-// src/app/products/products.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -34,7 +33,6 @@ export class ProductsComponent implements OnInit {
   }
 
   async addToCart(productId: string): Promise<void> {
-    const userId = this.authService.getUserIdFromCookie();
     const cartItem = {
       productId,
       quantity: 1
