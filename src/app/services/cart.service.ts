@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -8,13 +9,25 @@ import { AuthService } from './auth.service';
 export class CartService {
   private apiUrl = 'http://localhost:5005/api/cart';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   async getCartItems() {
     try {
-      const response = await axios.get(`${this.apiUrl}/user`, {
+      const userId = this.authService.getUserId();
+
+      console.log("cart.service from auth.service -->userId: ", userId);
+
+      if (!userId) {
+        this.router.navigate(['/login']);
+        throw new Error('Please Login First');
+      }
+      
+      const response = await axios.get(`${this.apiUrl}/${userId}`, {
         withCredentials: true,
       });
+
+      console.log("cart featched")
+      
       return response.data;
     } catch (error) {
       console.error('Error fetching cart items:', error);
@@ -25,7 +38,15 @@ export class CartService {
   async addToCart(cartItem: { productId: string; quantity: number }) {
     try {
 
-      console.log("add-to-cart clicked")
+      const userId = this.authService.getUserId();
+
+      console.log("userId cart service: ", this.authService.getUserId());
+
+      if (!userId) {
+        throw new Error('User is not logged in');
+      }
+
+      console.log("cart service - add to cart");
       
       const token = this.authService.getToken();
       const response = await axios.post(

@@ -30,6 +30,9 @@ export class ProductDetailComponent implements OnInit {
     if (productId) {
       try {
         const response = await this.productService.getProductById(productId);
+
+        console.log("prod-detail.comp.ts --> prod obj res: ", response.product);
+
         this.product = response.product;
       } catch (error) {
         console.error('Error fetching product details:', error);

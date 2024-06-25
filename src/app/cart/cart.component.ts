@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +14,8 @@ import { CommonModule } from '@angular/common';
 export class CartComponent implements OnInit {
   cartItems: any[] = [];
 
-  constructor(private cartService: CartService) { }
+
+  constructor(private cartService: CartService, private authService: AuthService) { }
 
   async ngOnInit(): Promise<void> {
     try {

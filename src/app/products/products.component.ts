@@ -33,7 +33,12 @@ export class ProductsComponent implements OnInit {
   }
 
   async addToCart(productId: string): Promise<void> {
+    const userId = this.authService.getUserId();
+
+    console.log("prod compo - add to cart");
+    
     const cartItem = {
+      userId,
       productId,
       quantity: 1
     };

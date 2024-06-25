@@ -7,6 +7,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { CartComponent } from './cart/cart.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ContactComponent } from './contact/contact.component';
 
 export const routes: Routes = [
     {
@@ -29,6 +30,12 @@ export const routes: Routes = [
     },
     {
         path: "cart", component: CartComponent, // canActivate: AuthGuard
+    },
+    {
+        path: "contact", component: ContactComponent
+    },
+    {
+        path: "add-to-cart", component: ProductsComponent
     }
 ];
 

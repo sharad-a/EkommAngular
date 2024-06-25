@@ -1,29 +1,53 @@
 import { Injectable } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
+import axios from 'axios';
+import { jwtDecode } from "jwt-decode";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  constructor(private cookieService: CookieService) {}
+  private apiUrl = 'http://localhost:5005/api/auth';
+  private userId: string | null = null;
 
-  getToken(): string | null {
-    return this.cookieService.get('token'); // token is stored as 'token'
+  async login(email: string, password: string) {
+    const response = await axios.post(`${this.apiUrl}/login`, { email, password }, { withCredentials: true });
+    this.userId = response.data.data[0]._id;
+    return response.data;
   }
 
-  getUserIdFromToken(): string | null {
-    const token = this.getToken();
-    if (!token) {
-      console.error('JWT token not found in cookies');
-      return null;
-    }
+  setUserId(userId: string): void {
+    this.userId = userId;
+  }
 
-    try {
-      const tokenPayload = JSON.parse(atob(token.split('.')[1])); // Decode JWT token
-      return tokenPayload.userId; // Assuming your JWT payload includes 'userId'
-    } catch (error) {
-      console.error('Error decoding JWT token:', error);
-      return null;
+  getUserId(): string | null {
+    return this.userId;
+  }
+
+  getToken(): string | null {
+    const name = "SessionID=";
+    const userId = "userId=";
+
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return null;
+  }
+
+  setUserIdFromToken(): void {
+    const token = this.getToken();
+    if (token) {
+      const decoded = jwtDecode(token);
+      // const decoded: any = jwt_decode(token);
+      // this.userId = decoded.id;
+      console.log("decoded: ", decoded);
     }
   }
 }
