@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Injectable({
   providedIn: 'root',
@@ -9,11 +10,13 @@ import { Router } from '@angular/router';
 export class CartService {
   private apiUrl = 'http://localhost:5005/api/cart';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, ) {}
 
   async getCartItems() {
     try {
       const userId = this.authService.getUserId();
+
+      // const userId = this.storage.retrieve('userid');
 
       console.log("cart.service from auth.service -->userId: ", userId);
 
@@ -66,5 +69,29 @@ export class CartService {
       throw error;
     }
   }
+
+  async removeFromCart(productId: string) {
+    try {
+        const userId = this.authService.getUserId();
+        const token = this.authService.getToken();
+        const response = await axios.post(
+            `${this.apiUrl}/remove-from-cart`,
+            { userId, productId },
+            {
+                headers: { Authorization: `Bearer ${token}` },
+                withCredentials: true,
+            }
+        );
+
+        console.log("remove-from-cart response data: ", response.data);
+
+        return response.data;
+    } catch (error) {
+        console.error('Error removing from cart:', error);
+        throw error;
+    }
+}
+
+
 }
 
