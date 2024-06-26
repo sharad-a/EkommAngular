@@ -1,0 +1,44 @@
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold mb-4">Order Summary</h2>
+    <div *ngFor="let item of cartItems" class="flex items-center justify-between mb-4 p-4 border rounded">
+        <div class="flex items-center">
+            <img [src]="item.product.prodImage" alt="{{item.product.prodName}}" class="w-16 h-16 object-cover mr-4">
+            <div>
+                <h3 class="text-lg font-semibold">{{item.product.prodName}}</h3>
+                <p class="text-gray-700">Quantity: {{item.quantity}}</p>
+                <!-- <p class="text-gray-700">Total: ₹{{ getProductPrice(item) }}/-</p> -->
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-end mt-6">
+        <h3 class="text-xl font-bold">Total Price: ₹{{ totalPrice }}/-</h3>
+    </div>
+    <div class="mt-8">
+        <h3 class="text-lg font-bold mb-2">Checkout Information</h3>
+        <form (submit)="confirmOrder()">
+            <div class="mb-4">
+                <label class="block text-gray-700">Name</label>
+                <input type="text" name="name" [(ngModel)]="checkoutData.name" class="w-full px-4 py-2 border rounded" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700">Address</label>
+                <input type="text" name="address" [(ngModel)]="checkoutData.address" class="w-full px-4 py-2 border rounded" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700">Card Number</label>
+                <input type="text" name="cardNumber" [(ngModel)]="checkoutData.cardNumber" class="w-full px-4 py-2 border rounded" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700">Expiration Date</label>
+                <input type="text" name="expDate" [(ngModel)]="checkoutData.expirationDate" class="w-full px-4 py-2 border rounded" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700">CVV</label>
+                <input type="text" name="cvv" [(ngModel)]="checkoutData.cvv" class="w-full px-4 py-2 border rounded" required>
+            </div>
+            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                Confirm Order
+            </button>
+        </form>
+    </div>
+</div>
