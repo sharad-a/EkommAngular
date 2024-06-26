@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
   providers: [CartService]
@@ -15,7 +16,7 @@ export class CartComponent implements OnInit {
   cartItems: any[] = [];
   totalPrice: number = 0;
 
-  constructor(private cartService: CartService, private authService: AuthService) { }
+  constructor(private cartService: CartService, private authService: AuthService, private router: Router) { }
 
   async ngOnInit(): Promise<void> {
     try {
@@ -46,5 +47,9 @@ export class CartComponent implements OnInit {
     this.totalPrice = this.cartItems.reduce((total, item) => {
       return total + (item.product.prodPrice * item.quantity);
     }, 0);
+  }
+
+  navigateToCheckout(): void {
+    this.router.navigate(['/checkout']);
   }
 }

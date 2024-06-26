@@ -18,9 +18,12 @@
         <h3 class="text-xl font-bold">Total: ₹{{ totalPrice }}/-</h3>
     </div>
     <div class="flex justify-end mt-6">
-        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        <!-- <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
             (click)="navigateToCheckout()">
             Checkout
-        </button>
+        </button> -->
+
+        <a routerLink="/checkout"
+            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mx-2 rounded">Checkout</a>
     </div>
 </div>
