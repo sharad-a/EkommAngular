@@ -8,6 +8,8 @@ import { CartComponent } from './cart/cart.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
 
 export const routes: Routes = [
     {
@@ -36,6 +38,12 @@ export const routes: Routes = [
     },
     {
         path: "add-to-cart", component: ProductsComponent
+    },
+    {
+        path: "checkout", component: CheckoutComponent,
+    },
+    {
+        path: "order-success", component: OrderSummaryComponent
     }
 ];
 
