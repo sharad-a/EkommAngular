@@ -6,7 +6,7 @@ import { jwtDecode } from "jwt-decode";
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5005/api/auth';
+  private apiUrl = 'http://localhost:5050/api/auth';
   private userId: string | null = null;
 
   // constructor(private storage: LocalStorageService) {}

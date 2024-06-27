@@ -8,9 +8,9 @@ import { LocalStorageService } from 'ngx-webstorage';
   providedIn: 'root',
 })
 export class CartService {
-  private apiUrl = 'http://localhost:5005/api/cart';
+  private apiUrl = 'http://localhost:5050/api/cart';
 
-  private checkoutUrl = 'http://localhost:5005/api';
+  private checkoutUrl = 'http://localhost:5050/api';
 
   constructor(private authService: AuthService, private router: Router,) { }
 

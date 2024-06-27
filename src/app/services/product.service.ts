@@ -5,7 +5,7 @@ import axios from 'axios';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:5005/api/products';
+  private apiUrl = 'http://localhost:5050/api/products';
 
   constructor() {}
 

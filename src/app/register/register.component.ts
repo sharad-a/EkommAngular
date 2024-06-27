@@ -27,7 +27,7 @@ export class RegisterComponent {
       password: this.password
     }
 
-    const res = await axios.post('http://localhost:5005/api/register', obj)
+    const res = await axios.post('http://localhost:5050/api/register', obj)
 
     console.log("Reg res: ", res.data.data[0].username)
     
