@@ -41,14 +41,19 @@ export class ProductDetailComponent implements OnInit {
   }
 
   async addToCart(): Promise<void> {
+    const userId = this.authService.getUserId();
     const cartItem = {
+      userId,
       productId: this.product._id,
       quantity: this.quantity
     };
 
+    console.log("prod-details --> ", cartItem);
+
     try {
       const response = await this.cartService.addToCart(cartItem);
       console.log('Product added to cart:', response);
+      alert('Product added to cart successfully!!');
     } catch (error) {
       console.error('Error adding product to cart:', error);
     }
