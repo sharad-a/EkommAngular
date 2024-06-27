@@ -45,6 +45,11 @@ export class CartService {
 
       const userId = this.authService.getUserId();
 
+      if (!userId) {
+        this.router.navigate(['/login']);
+        throw new Error('Please Login First');
+      }
+
       console.log("userId cart service: ", this.authService.getUserId());
 
       if (!userId) {
