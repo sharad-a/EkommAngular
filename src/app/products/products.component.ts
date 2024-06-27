@@ -36,7 +36,7 @@ export class ProductsComponent implements OnInit {
     const userId = this.authService.getUserId();
 
     const GTtOKEN = this.authService.getToken();
-    console.log(GTtOKEN);
+    // console.log(GTtOKEN);
 
     console.log("prod compo - add to cart");
     
@@ -49,6 +49,7 @@ export class ProductsComponent implements OnInit {
     try {
       const response = await this.cartService.addToCart(cartItem);
       console.log('Product added to cart:', response);
+      alert('Product added to cart successfully!!');
     } catch (error) {
       console.error('Error adding product to cart:', error);
     }

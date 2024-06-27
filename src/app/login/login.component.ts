@@ -33,7 +33,7 @@ export class LoginComponent {
     // with receiving cookies
     const res = await axios({
       method: 'post',
-      url: 'http://localhost:5005/api/login',
+      url: 'http://localhost:5050/api/login',
       data: obj,
       withCredentials: true,
     })

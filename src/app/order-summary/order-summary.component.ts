@@ -55,7 +55,7 @@ export class OrderSummaryComponent implements OnInit {
 
     try {
       const response = await this.cartService.checkout(checkoutData);
-      console.log('Checkout successful:', response);
+      // console.log('Checkout successful:', response);
       this.router.navigate(['/confirmation']);
     } catch (error) {
       console.error('Error during checkout:', error);
