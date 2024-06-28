@@ -20,6 +20,14 @@ export class CartComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     try {
+
+      // const userId = this.authService.getUserId();
+
+      // if (!userId) {
+      //   this.router.navigate(['/login']);
+      //   throw new Error('Please Login First');
+      // }
+      
       const response = await this.cartService.getCartItems();
       this.cartItems = response.cart;
       this.calculateTotalPrice();
