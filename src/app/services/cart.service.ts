@@ -99,6 +99,28 @@ export class CartService {
     }
   }
 
+  async emptyCart() {
+    try {
+      const userId = this.authService.getUserId();
+      const token = this.authService.getToken();
+      const response = await axios.post(
+        `${this.apiUrl}/emptyCart`,
+        { userId },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
+        }
+      );
+
+      console.log("emptyCart response data: ", response.data);
+
+      return response.data;
+    } catch (error) {
+      console.error('Error empty cart:', error);
+      throw error;
+    }
+  }
+
   // async checkout(data: any): Promise<any> {
   async checkout(data: any): Promise<any> {
     try {

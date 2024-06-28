@@ -100,4 +100,12 @@ setCookie(name: string, value: string, expireDays: number, path: string = '') {
       console.log("decoded: ", decoded);
     }
   }
+
+  isLoogedIn(): boolean {
+    if(this.getUserId() != null) {
+      return true;
+    }
+
+    return false;
+  }
 }

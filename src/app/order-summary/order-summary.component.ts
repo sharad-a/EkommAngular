@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import axios from 'axios';
 
 @Component({
   selector: 'app-order-summary',
@@ -65,10 +66,18 @@ export class OrderSummaryComponent implements OnInit {
   async confirmOrder(): Promise<void> {
     // Perform checkout logic, navigate to home on success
     try {
+
+      const userId = this.authService.getUserId();
       
       if (confirm('Are you sure you want to confirm your order?')) {
         
         alert('Order confirmed successfully!');
+
+        // await axios.post('http://localhost:5050/api/cart/emptyCart', { userId });
+        // console.log("start --> this.cartService.emptyCart()");
+        this.cartService.emptyCart();
+        // console.log("over --> this.cartService.emptyCart()");
+
         this.router.navigate(['/home']);
       }
     } catch (error) {

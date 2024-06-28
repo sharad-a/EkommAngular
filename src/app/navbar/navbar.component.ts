@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-// import { AuthService } from '../../services/auth.service';
-// import { CartService } from '../../services/cart.service';
-
+import { AuthService } from '../services/auth.service';
+import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterOutlet, RouterModule],
+  imports: [RouterOutlet, RouterModule, NgIf],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -15,7 +15,7 @@ export class NavbarComponent {
 
   cartItemCount: number = 0;
 
-  // constructor(private authService: AuthService, private cartService: CartService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   // ngOnInit(): void {
   //   this.cartService.getCartItems().subscribe(cartItems => {
@@ -23,8 +23,14 @@ export class NavbarComponent {
   //   });
   // }
 
-  // isLoggedIn(): boolean {
-  //   return this.authService.isLoggedIn();
-  // }
+  isLoggedIn(): boolean {
+    // console.log("isLooged in -->", this.authService.isLoogedIn())
+    return this.authService.isLoogedIn();
+  }
+
+  logout(): void {
+    localStorage.removeItem('localUserId');
+    this.router.navigate(['/products'])
+  }
 
 }

@@ -1,26 +1,28 @@
 <nav class="bg-gray-800 p-4">
     <div class="container mx-auto flex justify-between items-center">
-        <a routerLink="/" class="text-white text-xl font-bold">EKomm</a>
+        <a routerLink="/" class="text-white text-xl font-bold">EKomm-Angular</a>
         <div class="flex items-center space-x-4">
             <a routerLink="/" class="text-white">Home</a>
             <a routerLink="/products" class="text-white">Products</a>
-            <!-- <a *ngIf="isLoggedIn()" routerLink="/cart" class="text-white relative">
-                <span class="material-icons">shopping_cart</span>
+            <a *ngIf="isLoggedIn()" routerLink="/cart" class="text-white relative">
+                <span class="material-icons">Cart</span>
                 <span *ngIf="cartItemCount > 0"
                     class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full px-1">
                     {{ cartItemCount }}
                     cartItemCount
                 </span>
-            </a> -->
+            </a>
             <a routerLink="/contact" class="text-white">Contact</a>
-            <a routerLink="/cart" class="text-white">Cart</a>
+            <!-- <a routerLink="/cart" class="text-white">Cart</a> -->
         </div>
 
         <div>
-            <a routerLink="/login"
+            <a routerLink="/login" *ngIf="!isLoggedIn()"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-2 rounded">Login</a>
-            <a routerLink="/register"
+            <a routerLink="/register" *ngIf="!isLoggedIn()"
                 class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mx-2 rounded">Register</a>
+            <a (click)="logout()" *ngIf="isLoggedIn()"
+                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mx-2 rounded">Logout</a>
         </div>
     </div>
 </nav>
